@@ -10,8 +10,8 @@ Personal portfolio of **Scholar Thubalami Nkomazana** — AI Engineer, Founder &
 Zero-build static site — plain HTML, CSS and vanilla JavaScript. No dependencies.
 
 - `index.html` — all content
-- `css/styles.css` — design system with light & dark palettes (Bodoni Moda · Schibsted Grotesk · Martian Mono)
-- `js/main.js` — interactions: theme switch with circular reveal, accretion particle field, role scramble, scroll-scrubbed text, stacking project cards, live data visuals, neural constellation, count-ups, magnetic cursor, ⌘K command palette
+- `css/styles.css` — Navy Steel design system with light & dark palettes (IBM Plex Sans · IBM Plex Mono)
+- `js/main.js` — interactions: theme switch, scroll-scrubbed text, stacking project cards, live project visuals, neural network, count-ups, ⌘K command menu
 - `assets/logo.svg` — STN badge (also exported as `logo-512.png` / `logo-1024.png`)
 - `assets/cv/` — downloadable CV
 
