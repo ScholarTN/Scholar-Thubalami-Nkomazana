@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Scholar Thubalami Nkomazana — AI Engineer &amp; Founder</title>
+  <meta name="description" content="Scholar Thubalami Nkomazana — AI Engineer, Founder &amp; CEO of Axterion. Building intelligent systems across machine learning, data engineering, software and automation." />
+  <meta name="theme-color" content="#0b0a09" />
+  <meta property="og:title" content="Scholar Thubalami Nkomazana — AI Engineer &amp; Founder" />
+  <meta property="og:description" content="Proximity is the locus of accretion and emergence." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/img/portrait-hero.webp" />
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..700&family=Martian+Mono:wght@300..500&family=Schibsted+Grotesk:ital,wght@0,400..700;1,400..600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preload" as="image" href="assets/img/portrait-hero.webp" />
+</head>
+<body class="is-loading">
+
+  <!-- ============ PRELOADER ============ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <svg class="preloader__mark" viewBox="0 0 64 64" fill="none">
+      <g stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path pathLength="1" d="M21 23 H13.5 a4.75 4.75 0 0 0 0 9.5 h3 a4.75 4.75 0 0 1 0 9.5 H9"/>
+        <path pathLength="1" d="M25 23 H39 M32 23 V42"/>
+        <path pathLength="1" d="M43 42 V23 L55 42 V23"/>
+      </g>
+      <circle class="preloader__node" cx="55" cy="14.5" r="2.4"/>
+    </svg>
+    <div class="preloader__meta">
+      <span>Accreting</span>
+      <span class="preloader__count" id="preloaderCount">000</span>
+    </div>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+  <div class="cursor" aria-hidden="true"><div class="cursor__dot"></div><div class="cursor__ring"><span class="cursor__label"></span></div></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <a href="#top" class="brand" aria-label="Scholar Thubalami Nkomazana — home">
+      <svg class="brand__mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <g stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 23 H13.5 a4.75 4.75 0 0 0 0 9.5 h3 a4.75 4.75 0 0 1 0 9.5 H9"/>
+          <path d="M25 23 H39 M32 23 V42"/>
+          <path d="M43 42 V23 L55 42 V23"/>
+        </g>
+        <circle cx="55" cy="13.5" r="3" fill="var(--ember)"/>
+      </svg>
+      <span class="brand__name">Scholar Thubalami Nkomazana</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#about" data-magnetic>About</a>
+      <a href="#work" data-magnetic>Work</a>
+      <a href="#experience" data-magnetic>Experience</a>
+      <a href="#axterion" data-magnetic>Axterion</a>
+      <a href="#contact" data-magnetic>Contact</a>
+    </nav>
+    <div class="nav__right">
+      <span class="nav__clock mono" title="Local time — Jalandhar, IN"><i class="pulse"></i><span id="clock">--:--</span> IST</span>
+      <button class="kbd-btn mono" id="paletteBtn" aria-label="Open command palette"><kbd>⌘</kbd><kbd>K</kbd></button>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <a href="#about">About</a><a href="#work">Work</a><a href="#experience">Experience</a><a href="#axterion">Axterion</a><a href="#stack">Stack</a><a href="#contact">Contact</a>
+  </div>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <canvas class="field" id="field" aria-hidden="true"></canvas>
+
+      <div class="hero__inner">
+        <div class="hero__copy">
+          <p class="eyebrow mono reveal-up"><span class="eyebrow__line"></span>Portfolio — MMXXVI · <span class="ember">AI Engineer</span></p>
+
+          <h1 class="hero__name" aria-label="Scholar Thubalami Nkomazana">
+            <span class="line"><span class="word">Scholar</span></span>
+            <span class="line"><span class="word italic">Thubalami</span></span>
+            <span class="line"><span class="word">Nkomazana</span></span>
+          </h1>
+
+          <div class="roles reveal-up" aria-live="polite">
+            <span class="roles__prefix mono">// currently</span>
+            <span class="roles__word" id="roleWord">Builder</span>
+            <span class="roles__list mono" aria-hidden="true">
+              <i data-role="Student">Student</i><i data-role="Founder">Founder</i><i data-role="CEO">CEO</i><i data-role="Builder">Builder</i><i data-role="Preacher">Preacher</i>
+            </span>
+          </div>
+
+          <blockquote class="maxim reveal-up">
+            <span class="maxim__mark">“</span>Proximity is the locus of <em>accretion</em> and <em>emergence</em>.<span class="maxim__mark">”</span>
+          </blockquote>
+
+          <div class="hero__ctas reveal-up">
+            <a href="#work" class="btn btn--solid" data-magnetic data-cursor="Explore"><span>View projects</span><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+            <a href="#about" class="btn" data-magnetic><span>About me</span></a>
+            <a href="#contact" class="btn btn--ghost" data-magnetic><span>Get in touch</span></a>
+          </div>
+        </div>
+
+        <div class="hero__visual" id="heroVisual">
+          <div class="halo"></div>
+          <svg class="orbit" viewBox="0 0 600 600" aria-hidden="true">
+            <circle cx="300" cy="300" r="250" />
+            <circle cx="300" cy="300" r="200" class="dashed" />
+            <g class="orbit__spin"><circle cx="550" cy="300" r="5" class="orbit__node" /></g>
+            <g class="orbit__spin orbit__spin--rev"><circle cx="100" cy="300" r="3.5" class="orbit__node orbit__node--ink" /></g>
+          </svg>
+          <img class="portrait" src="assets/img/portrait-hero.webp" alt="Portrait of Scholar Thubalami Nkomazana in a black suit" width="877" height="1338" />
+          <div class="tag tag--a mono"><i></i>Founder &amp; CEO · Axterion</div>
+          <div class="tag tag--b mono"><i></i>AI · ML · Data · MLOps</div>
+          <div class="tag tag--c mono"><i></i>Medical &amp; Neuro AI — long-term</div>
+        </div>
+      </div>
+
+      <div class="hero__foot mono">
+        <span>31.33°N · 75.58°E — Jalandhar, IN</span>
+        <a href="#about" class="scroll-cue" aria-label="Scroll to about"><span>Scroll</span><i></i></a>
+        <span class="hide-sm">Move your cursor — watch it accrete</span>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Artificial Intelligence</span><b>✳</b><span>Machine Learning</span><b>✳</b><span>AI Engineering</span><b>✳</b><span>Data Engineering</span><b>✳</b><span>MLOps</span><b>✳</b><span>Generative AI</span><b>✳</b><span>Automation</span><b>✳</b><span>Software</span><b>✳</b>
+        <span>Artificial Intelligence</span><b>✳</b><span>Machine Learning</span><b>✳</b><span>AI Engineering</span><b>✳</b><span>Data Engineering</span><b>✳</b><span>MLOps</span><b>✳</b><span>Generative AI</span><b>✳</b><span>Automation</span><b>✳</b><span>Software</span><b>✳</b>
+      </div>
+    </div>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section about" id="about">
+      <header class="section__head">
+        <span class="section__num mono">01</span>
+        <h2 class="section__label mono">About</h2>
+      </header>
+
+      <p class="statement" data-scrub>
+        My journey into artificial intelligence began with a fascination with both technology and medicine — with the human brain, how it works, and how technology could help us understand and support it.
+      </p>
+
+      <div class="about__grid">
+        <div class="about__col reveal-up">
+          <p>I initially considered becoming a <strong>neurosurgeon</strong>. Eventually I realised that what I wanted most was to understand the brain — and to build technologies that could contribute to healthcare.</p>
+          <p>That led me toward <strong>Artificial Intelligence</strong> and <strong>Data Engineering</strong>.</p>
+        </div>
+        <div class="about__col reveal-up">
+          <p>Today I work across AI engineering, machine learning, data, software development, automation and AI deployment. I enjoy taking an idea or a real-world problem and turning it into something practical that people can actually use.</p>
+          <p>As <strong>Founder &amp; CEO of Axterion</strong>, I turn ideas and real-world problems into practical technology solutions.</p>
+        </div>
+        <dl class="facts reveal-up">
+          <div><dt class="mono">Based</dt><dd>Jalandhar, Punjab · IN</dd></div>
+          <div><dt class="mono">Focus</dt><dd>AI Engineering, broad</dd></div>
+          <div><dt class="mono">Direction</dt><dd>Medical &amp; Neuro AI</dd></div>
+          <div><dt class="mono">Venture</dt><dd>Axterion</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ CAPABILITIES ============ -->
+    <section class="section caps" id="capabilities">
+      <header class="section__head">
+        <span class="section__num mono">02</span>
+        <h2 class="section__label mono">What I do</h2>
+      </header>
+      <h3 class="display reveal-up">Six disciplines.<br /><em>One system.</em></h3>
+
+      <ol class="caps__list">
+        <li class="cap" data-cursor="Open">
+          <span class="cap__n mono">01</span>
+          <h4 class="cap__t">Artificial Intelligence &amp; Machine Learning</h4>
+          <p class="cap__d">Building machine-learning systems that transform data into predictions, insights and useful decisions.</p>
+          <span class="cap__plus" aria-hidden="true"></span>
+        </li>
+        <li class="cap" data-cursor="Open">
+          <span class="cap__n mono">02</span>
+          <h4 class="cap__t">AI Engineering</h4>
+          <p class="cap__d">Developing practical AI applications and integrating models into usable software systems and APIs.</p>
+          <span class="cap__plus" aria-hidden="true"></span>
+        </li>
+        <li class="cap" data-cursor="Open">
+          <span class="cap__n mono">03</span>
+          <h4 class="cap__t">Data Engineering &amp; Analytics</h4>
+          <p class="cap__d">Working with structured and semi-structured data, databases, pipelines, analytics and visualisation.</p>
+          <span class="cap__plus" aria-hidden="true"></span>
+        </li>
+        <li class="cap" data-cursor="Open">
+          <span class="cap__n mono">04</span>
+          <h4 class="cap__t">MLOps &amp; Deployment</h4>
+          <p class="cap__d">The systems required to take machine-learning models from development into reliable production environments.</p>
+          <span class="cap__plus" aria-hidden="true"></span>
+        </li>
+        <li class="cap" data-cursor="Open">
+          <span class="cap__n mono">05</span>
+          <h4 class="cap__t">Software Development</h4>
+          <p class="cap__d">Web applications, APIs, dashboards and backend systems that bring AI and data solutions to users.</p>
+          <span class="cap__plus" aria-hidden="true"></span>
+        </li>
+        <li class="cap" data-cursor="Open">
+          <span class="cap__n mono">06</span>
+          <h4 class="cap__t">Automation</h4>
+          <p class="cap__d">Workflows and tools that reduce repetitive work and improve operational efficiency.</p>
+          <span class="cap__plus" aria-hidden="true"></span>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ============ FEATURED WORK ============ -->
+    <section class="section work" id="work">
+      <header class="section__head">
+        <span class="section__num mono">03</span>
+        <h2 class="section__label mono">Featured work</h2>
+      </header>
+      <h3 class="display reveal-up">Depth over <em>volume.</em></h3>
+      <p class="lede reveal-up">Four projects that tell the strongest story — what problem each solves, what I personally built, and exactly where it stands today.</p>
+
+      <div class="stack-cards">
+
+        <!-- 01 Diabetes -->
+        <article class="pcard" style="--i:0" data-tilt>
+          <div class="pcard__spot" aria-hidden="true"></div>
+          <div class="pcard__head">
+            <span class="pcard__idx mono">01</span>
+            <div>
+              <p class="pcard__kicker mono">Healthcare Technology · Machine Learning · Full Stack</p>
+              <h4 class="pcard__title">Diabetes Risk Prediction AI</h4>
+            </div>
+            <span class="status status--done mono"><i></i>Completed</span>
+          </div>
+          <div class="pcard__body">
+            <div class="pcard__text">
+              <p>An intelligent healthcare application providing <strong>preliminary diabetes risk assessment</strong> from health parameters — with separate portals for patients and doctors.</p>
+              <h5 class="mono">What I built</h5>
+              <ul class="built">
+                <li>Patient &amp; doctor portals</li><li>Real-time risk assessment</li>
+                <li>ML prediction system</li><li>Patient history tracking</li>
+                <li>Doctor dashboard</li><li>Risk-distribution analytics</li>
+                <li>Automated PDF/CSV reports</li><li>JWT auth &amp; role-based access</li>
+                <li>Personalised preventive suggestions</li>
+              </ul>
+              <p class="outcome"><span class="mono">Outcome</span> Random Forest trained on the PIMA Indians Diabetes Dataset — <strong>89.2% accuracy</strong> reported in the README. Tested with <strong>150+ simulated patient records</strong>. Previously deployed on Railway (API) + Vercel (UI); the Railway backend is currently paused.</p>
+              <p class="note mono">Preliminary risk-assessment tool — not a clinically validated diagnostic system.</p>
+              <div class="chips"><span>Python</span><span>Flask</span><span>Scikit-learn</span><span>Random Forest</span><span>MongoDB</span><span>JavaScript</span><span>Chart.js</span><span>JWT</span></div>
+              <a class="link-arrow mono" href="https://github.com/ScholarTN/AI-Disease-Prediction" target="_blank" rel="noopener" data-cursor="GitHub">Source on GitHub <span>↗</span></a>
+            </div>
+            <div class="viz viz--risk" aria-hidden="true">
+              <svg viewBox="0 0 300 220">
+                <defs>
+                  <linearGradient id="gRisk" x1="0" x2="1">
+                    <stop offset="0" stop-color="#8fb8a8"/><stop offset=".55" stop-color="#d9b56a"/><stop offset="1" stop-color="#e0703f"/>
+                  </linearGradient>
+                </defs>
+                <path d="M50 160 A100 100 0 0 1 250 160" class="gauge-bg"/>
+                <path d="M50 160 A100 100 0 0 1 250 160" class="gauge-fg" stroke="url(#gRisk)"/>
+                <g class="needle"><line x1="150" y1="160" x2="150" y2="78"/><circle cx="150" cy="160" r="6"/></g>
+                <text x="150" y="196" class="viz__big">RISK INDEX</text>
+              </svg>
+              <div class="bars">
+                <div><span style="--h:62%"></span><em class="mono">LOW</em></div>
+                <div><span style="--h:28%"></span><em class="mono">MED</em></div>
+                <div><span style="--h:10%"></span><em class="mono">HIGH</em></div>
+              </div>
+              <p class="viz__cap mono">rf.predict_proba(patient) → risk band</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 02 Energy -->
+        <article class="pcard" style="--i:1" data-tilt>
+          <div class="pcard__spot" aria-hidden="true"></div>
+          <div class="pcard__head">
+            <span class="pcard__idx mono">02</span>
+            <div>
+              <p class="pcard__kicker mono">Data Analytics · IoT · Real-Time Monitoring</p>
+              <h4 class="pcard__title">Smart Energy Monitoring Dashboard</h4>
+            </div>
+            <span class="status status--done mono"><i></i>Completed</span>
+          </div>
+          <div class="pcard__body">
+            <div class="pcard__text">
+              <p>Analyses <strong>real-time electricity consumption</strong> and turns raw sensor streams into visual insight — combining IoT data, backend engineering and analytics into one practical monitoring system.</p>
+              <h5 class="mono">What I built</h5>
+              <ul class="built">
+                <li>Real-time consumption monitoring</li><li>Data processing &amp; analysis</li>
+                <li>Interactive dashboard</li><li>Backend data handling</li>
+                <li>Node-RED integration</li><li>Consumption-pattern visualisation</li>
+              </ul>
+              <div class="chips"><span>Python</span><span>Flask</span><span>NumPy</span><span>Node-RED</span><span>MQTT</span><span>MongoDB Atlas</span><span>Dash</span></div>
+              <a class="link-arrow mono" href="https://github.com/ScholarTN/smart-energy-dashboard" target="_blank" rel="noopener" data-cursor="GitHub">Source on GitHub <span>↗</span></a>
+            </div>
+            <div class="viz viz--energy" aria-hidden="true">
+              <div class="viz__row mono"><span>LIVE · MQTT</span><span><b id="kw">2.41</b> kW</span></div>
+              <canvas id="energyChart"></canvas>
+              <div class="viz__row mono dim"><span>sensor/main/power</span><span id="kwh">0.000 kWh</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 03 FleetMind -->
+        <article class="pcard" style="--i:2" data-tilt>
+          <div class="pcard__spot" aria-hidden="true"></div>
+          <div class="pcard__head">
+            <span class="pcard__idx mono">03</span>
+            <div>
+              <p class="pcard__kicker mono">AI Engineering · Data Engineering · ML · Generative AI</p>
+              <h4 class="pcard__title">FleetMind <em>— Logistics Decision Support</em></h4>
+            </div>
+            <span class="status status--dev mono"><i></i>In development</span>
+          </div>
+          <div class="pcard__body">
+            <div class="pcard__text">
+              <p>An intelligent fleet-management platform designed around <strong>real-world logistics operations</strong> — bringing fleet data, dispatch, machine learning and AI-assisted decision support into one modular system.</p>
+              <h5 class="mono">Core areas</h5>
+              <ul class="built">
+                <li>Drivers, vehicles &amp; trailers</li><li>Load &amp; dispatch management</li>
+                <li>Safety incidents &amp; maintenance</li><li>Fleet analytics</li>
+                <li>Delivery-delay prediction</li><li>Risk prediction</li>
+                <li>Driver / load recommendations</li><li>AI Operations Copilot</li>
+                <li>RAG over policy &amp; safety docs</li>
+              </ul>
+              <p class="outcome"><span class="mono">Architecture</span> Frontend, API, database, ML pipeline and AI layer are separated into independent modules.</p>
+              <p class="note mono">Ongoing — AI layer and final deployment still in progress; not yet production-ready.</p>
+              <div class="chips"><span>Streamlit</span><span>FastAPI</span><span>PostgreSQL</span><span>SQLAlchemy</span><span>Machine Learning</span><span>RAG</span><span>LLM</span></div>
+              <a class="link-arrow mono" href="https://github.com/ScholarTN/fleetmindAI" target="_blank" rel="noopener" data-cursor="GitHub">Source on GitHub <span>↗</span></a>
+            </div>
+            <div class="viz viz--fleet" aria-hidden="true">
+              <svg viewBox="0 0 300 220">
+                <path id="r1" class="route" d="M30 180 C 90 170, 90 80, 150 70 S 250 60, 270 30"/>
+                <path id="r2" class="route" d="M30 180 C 120 190, 180 150, 270 170"/>
+                <path id="r3" class="route" d="M150 70 C 170 120, 220 140, 270 170"/>
+                <circle cx="30" cy="180" r="6" class="depot"/><circle cx="150" cy="70" r="5" class="hub"/>
+                <circle cx="270" cy="30" r="5" class="hub"/><circle cx="270" cy="170" r="5" class="hub"/>
+                <circle r="3.5" class="truck"><animateMotion dur="7s" repeatCount="indefinite" rotate="auto"><mpath href="#r1"/></animateMotion></circle>
+                <circle r="3.5" class="truck truck--b"><animateMotion dur="9s" repeatCount="indefinite"><mpath href="#r2"/></animateMotion></circle>
+                <circle r="3" class="truck"><animateMotion dur="5s" begin="1s" repeatCount="indefinite"><mpath href="#r3"/></animateMotion></circle>
+              </svg>
+              <div class="copilot mono">
+                <span class="copilot__q">&gt; which loads are at risk of delay?</span>
+                <span class="copilot__a">3 loads flagged · reroute via hub B<i class="caret"></i></span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 04 Ops Data -->
+        <article class="pcard" style="--i:3" data-tilt>
+          <div class="pcard__spot" aria-hidden="true"></div>
+          <div class="pcard__head">
+            <span class="pcard__idx mono">04</span>
+            <div>
+              <p class="pcard__kicker mono">Professional work · Xpress Cargo Inc.</p>
+              <h4 class="pcard__title">Operations Data &amp; AI Foundations</h4>
+            </div>
+            <span class="status status--pro mono"><i></i>Industry</span>
+          </div>
+          <div class="pcard__body">
+            <div class="pcard__text">
+              <p>Production AI rests on trustworthy data. As an Operations Data Analyst, I worked with live logistics records — <strong>drivers, trucks, trailers and loads</strong> — querying, validating and standardising them in PostgreSQL.</p>
+              <h5 class="mono">What I did</h5>
+              <ul class="built">
+                <li>Data-quality validation</li><li>Duplicate &amp; missing-value handling</li>
+                <li>Resolving constraint issues</li><li>Dispatch / load standardisation</li>
+                <li>Data-seeding workflows</li><li>FastAPI + SQLAlchemy tooling</li>
+              </ul>
+              <div class="chips"><span>SQL</span><span>PostgreSQL</span><span>FastAPI</span><span>SQLAlchemy</span><span>Python</span></div>
+            </div>
+            <div class="viz viz--sql mono" aria-hidden="true">
+              <div class="term__bar"><i></i><i></i><i></i><span>psql — ops</span></div>
+              <pre class="term"><span class="k">SELECT</span> load_id, driver_id, status
+<span class="k">FROM</span>   loads
+<span class="k">WHERE</span>  status <span class="k">IS NULL</span>
+   <span class="k">OR</span>  driver_id <span class="k">NOT IN</span> (<span class="k">SELECT</span> id <span class="k">FROM</span> drivers);</pre>
+              <div class="rows">
+                <div class="r r--ok"><span>L-1042</span><span>D-07</span><span>✓ valid</span></div>
+                <div class="r r--dup"><span>L-1043</span><span>D-07</span><span>⟲ duplicate</span></div>
+                <div class="r r--fix"><span>L-1044</span><span>NULL</span><span>→ standardised</span></div>
+                <div class="r r--ok"><span>L-1045</span><span>D-12</span><span>✓ valid</span></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- archive -->
+      <div class="archive">
+        <h4 class="archive__title mono reveal-up">More projects — archive</h4>
+        <ul class="archive__list">
+          <li><a href="https://github.com/ScholarTN/Sign_Language_Recognition_With_Gesture-To-Text_Translation" target="_blank" rel="noopener" data-cursor="Open"><span class="a__name">ASL Gesture-to-Text Translation</span><span class="a__desc">End-to-end American Sign Language recognition translating hand gestures into coherent sentences.</span><span class="a__tech mono">Computer Vision · Deep Learning</span><span class="a__go">↗</span></a></li>
+          <li><a href="https://github.com/ScholarTN/ASL_Recognition_using_OpenCv" target="_blank" rel="noopener" data-cursor="Open"><span class="a__name">Real-time ASL Recognition</span><span class="a__desc">Webcam pipeline detecting hand gestures and predicting ASL alphabet signs live.</span><span class="a__tech mono">Python · OpenCV</span><span class="a__go">↗</span></a></li>
+          <li><a href="https://github.com/ScholarTN/AI_Customer_Support_Agent" target="_blank" rel="noopener" data-cursor="Open"><span class="a__name">AI Customer Support Agent</span><span class="a__desc">An AI agent that handles customer-support conversations.</span><span class="a__tech mono">Python · LLM</span><span class="a__go">↗</span></a></li>
+          <li><a href="https://github.com/ScholarTN/-LLM-Systems-Applied-GenAI" target="_blank" rel="noopener" data-cursor="Open"><span class="a__name">LLM Systems &amp; Applied GenAI</span><span class="a__desc">LLM systems and GenAI products, built to understand the underlying ML concepts.</span><span class="a__tech mono">GenAI · LLM Systems</span><span class="a__go">↗</span></a></li>
+          <li><a href="https://github.com/ScholarTN/Projects101-PWA-Campus-Marketplace" target="_blank" rel="noopener" data-cursor="Open"><span class="a__name">Campus Marketplace PWA</span><span class="a__desc">A progressive web app marketplace for students on campus.</span><span class="a__tech mono">Python · PWA</span><span class="a__go">↗</span></a></li>
+          <li><a href="https://github.com/ScholarTN/neetcode-submissions-9gj86v7d" target="_blank" rel="noopener" data-cursor="Open"><span class="a__name">Algorithms &amp; Data Structures</span><span class="a__desc">Ongoing NeetCode problem solving and DSA practice in Java.</span><span class="a__tech mono">Java · DSA</span><span class="a__go">↗</span></a></li>
+          <li><a href="https://github.com/ScholarTN/SQL-PROJECT" target="_blank" rel="noopener" data-cursor="Open"><span class="a__name">SQL Project</span><span class="a__desc">Relational modelling and querying practice in PostgreSQL.</span><span class="a__tech mono">SQL · PL/pgSQL</span><span class="a__go">↗</span></a></li>
+        </ul>
+        <a class="link-arrow mono archive__all" href="https://github.com/ScholarTN?tab=repositories" target="_blank" rel="noopener">All repositories on GitHub <span>↗</span></a>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section exp" id="experience">
+      <header class="section__head">
+        <span class="section__num mono">04</span>
+        <h2 class="section__label mono">Experience</h2>
+      </header>
+      <h3 class="display reveal-up">Where the work <em>happened.</em></h3>
+
+      <ol class="timeline" id="timeline">
+        <span class="timeline__rail" aria-hidden="true"><span id="timelineFill"></span></span>
+        <li class="tl reveal-up">
+          <span class="tl__date mono">2026</span>
+          <div class="tl__body">
+            <h4>Operations Data Analyst Intern</h4>
+            <p class="tl__org mono">Xpress Cargo Inc.</p>
+            <p>Worked with operational logistics data — drivers, trucks, trailers and loads. Built data-seeding workflows with FastAPI and SQLAlchemy, and used PostgreSQL to query, validate and standardise operational records.</p>
+          </div>
+        </li>
+        <li class="tl reveal-up">
+          <span class="tl__date mono">2026</span>
+          <div class="tl__body">
+            <h4>LLM Systems &amp; Applied GenAI Intern</h4>
+            <p class="tl__org mono">Futurense Technologies</p>
+            <p>Large language model systems, applied GenAI techniques, and the development and deployment of GenAI-driven solutions. Project: <strong>FleetMindAI</strong>.</p>
+          </div>
+        </li>
+        <li class="tl reveal-up">
+          <span class="tl__date mono">Jun — Aug 2025</span>
+          <div class="tl__body">
+            <h4>Data Analyst Intern</h4>
+            <p class="tl__org mono">Futurense Technologies</p>
+            <p>Summer internship (9 June – 30 August 2025) focused on analytical methods, data interpretation and structured insight for decision-making — including SQL, Python utilities, backend debugging, automation scripts, API workflows and technical documentation.</p>
+          </div>
+        </li>
+        <li class="tl reveal-up">
+          <span class="tl__date mono">2024</span>
+          <div class="tl__body">
+            <h4>Freelance Data Analyst</h4>
+            <p class="tl__org mono">University of Zimbabwe</p>
+            <p>Energy-consumption data, data pipelines, structured and semi-structured datasets, dashboards and data preparation.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ============ AXTERION ============ -->
+    <section class="axterion" id="axterion">
+      <div class="axterion__inner">
+        <div class="axterion__photo" data-parallax="0.12">
+          <div class="axterion__frame"></div>
+          <img src="assets/img/portrait-full.webp" alt="Scholar Thubalami Nkomazana in a navy pinstripe three-piece suit" loading="lazy" width="485" height="1402" />
+          <span class="axterion__sig mono">STN — Founder &amp; CEO</span>
+        </div>
+        <div class="axterion__copy">
+          <header class="section__head">
+            <span class="section__num mono">05</span>
+            <h2 class="section__label mono">The venture</h2>
+          </header>
+          <p class="axterion__brand mono reveal-up">AXTERION</p>
+          <h3 class="axterion__tag reveal-up">Engineering<br /><em>Intelligent</em> Growth.</h3>
+          <p class="lede reveal-up">Axterion is my technology venture — built to help organisations turn ideas into useful digital systems. I lead it as Founder &amp; CEO, from product vision to the engineering itself.</p>
+          <ul class="services">
+            <li class="reveal-up"><span class="mono">A</span>Artificial Intelligence</li>
+            <li class="reveal-up"><span class="mono">B</span>AI Automation</li>
+            <li class="reveal-up"><span class="mono">C</span>Web Development</li>
+            <li class="reveal-up"><span class="mono">D</span>Mobile Applications</li>
+            <li class="reveal-up"><span class="mono">E</span>Technology Consulting</li>
+          </ul>
+          <a href="https://axterionlabs.com" target="_blank" rel="noopener" class="btn btn--solid reveal-up" data-magnetic data-cursor="Visit"><span>axterionlabs.com</span><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STACK ============ -->
+    <section class="section stack" id="stack">
+      <header class="section__head">
+        <span class="section__num mono">06</span>
+        <h2 class="section__label mono">Technical stack</h2>
+      </header>
+      <h3 class="display reveal-up">Tools, <em>in use.</em></h3>
+      <p class="lede reveal-up">Hover a tool to see where it has actually shipped.</p>
+
+      <div class="stack__grid">
+        <div class="sgroup reveal-up"><h5 class="mono">Languages</h5><div class="chips chips--lg"><span data-p="1 2 3 4">Python</span><span data-p="">Java</span><span data-p="4">SQL</span></div></div>
+        <div class="sgroup reveal-up"><h5 class="mono">AI / ML</h5><div class="chips chips--lg"><span data-p="1">Scikit-learn</span><span data-p="1 3">Machine Learning</span><span data-p="3">Generative AI</span><span data-p="3">RAG</span><span data-p="3">LLM Systems</span></div></div>
+        <div class="sgroup reveal-up"><h5 class="mono">Backend</h5><div class="chips chips--lg"><span data-p="1 2">Flask</span><span data-p="3 4">FastAPI</span><span data-p="1 2 3">REST APIs</span><span data-p="3 4">SQLAlchemy</span></div></div>
+        <div class="sgroup reveal-up"><h5 class="mono">Data</h5><div class="chips chips--lg"><span data-p="3 4">PostgreSQL</span><span data-p="">MySQL</span><span data-p="1 2">MongoDB</span><span data-p="2">NumPy</span></div></div>
+        <div class="sgroup reveal-up"><h5 class="mono">Visualisation &amp; IoT</h5><div class="chips chips--lg"><span data-p="2">Dash</span><span data-p="1">Chart.js</span><span data-p="2">Node-RED</span><span data-p="2">MQTT</span><span data-p="3">Streamlit</span></div></div>
+        <div class="sgroup reveal-up"><h5 class="mono">Cloud &amp; Engineering</h5><div class="chips chips--lg"><span data-p="">AWS</span><span data-p="">Azure</span><span data-p="1">Railway</span><span data-p="1">Vercel</span><span data-p="1 2 3 4">Git</span><span data-p="">MLOps</span></div></div>
+      </div>
+      <div class="stack__ledger mono" id="stackLedger" aria-live="polite">
+        <span class="ledger__label">Shipped in →</span>
+        <span data-k="1">01 Diabetes AI</span><span data-k="2">02 Energy</span><span data-k="3">03 FleetMind</span><span data-k="4">04 Ops Data</span>
+      </div>
+    </section>
+
+    <!-- ============ CERTIFICATIONS ============ -->
+    <section class="section certs" id="certs">
+      <header class="section__head">
+        <span class="section__num mono">07</span>
+        <h2 class="section__label mono">Certifications</h2>
+      </header>
+      <div class="certs__grid">
+        <article class="cert reveal-up" data-tilt><span class="cert__issuer mono">Oracle</span><h4>OCI Certified Generative AI Professional</h4><span class="cert__seal" aria-hidden="true">GenAI</span></article>
+        <article class="cert reveal-up" data-tilt><span class="cert__issuer mono">Microsoft</span><h4>DP-900: Azure Data Fundamentals</h4><span class="cert__seal" aria-hidden="true">Data</span></article>
+        <article class="cert reveal-up" data-tilt><span class="cert__issuer mono">AWS</span><h4>AWS Generative AI Certification</h4><span class="cert__seal" aria-hidden="true">Cloud</span></article>
+        <article class="cert reveal-up" data-tilt><span class="cert__issuer mono">HP LIFE</span><h4>Effective Leadership</h4><span class="cert__seal" aria-hidden="true">Lead</span></article>
+      </div>
+    </section>
+
+    <!-- ============ DIRECTION ============ -->
+    <section class="direction" id="direction">
+      <canvas class="neuro" id="neuro" aria-hidden="true"></canvas>
+      <div class="direction__inner">
+        <header class="section__head section__head--center">
+          <span class="section__num mono">08</span>
+          <h2 class="section__label mono">Long-term direction</h2>
+        </header>
+        <h3 class="direction__title reveal-up">Building technology at the intersection of <em>intelligence</em>, <em>engineering</em> and <em>human impact.</em></h3>
+        <div class="direction__cols">
+          <div class="reveal-up"><span class="mono">Now</span><p>Becoming a strong, well-rounded AI Engineer — building systems across machine learning, software, data, automation and MLOps.</p></div>
+          <div class="reveal-up"><span class="mono">Next</span><p>Exploring the intersection of AI and healthcare — particularly technologies related to the human brain and neuroscience.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contact">
+      <header class="section__head">
+        <span class="section__num mono">09</span>
+        <h2 class="section__label mono">Contact</h2>
+      </header>
+      <h3 class="contact__title">
+        <span class="line"><span class="word">Let’s build</span></span>
+        <span class="line"><span class="word"><em>something</em></span></span>
+        <span class="line"><span class="word">meaningful.</span></span>
+      </h3>
+      <p class="lede reveal-up">Open to opportunities in AI Engineering · Machine Learning · Data · MLOps · Generative AI · Automation · Technology Ventures.</p>
+
+      <button class="email" id="emailBtn" data-magnetic data-cursor="Copy" aria-label="Copy email address">
+        <span class="email__text">thubalaminkomazana15@gmail.com</span>
+        <span class="email__hint mono">click to copy</span>
+      </button>
+
+      <ul class="socials">
+        <li><a href="mailto:thubalaminkomazana15@gmail.com" data-magnetic><span class="mono">Email</span>Write to me ↗</a></li>
+        <li><a href="https://github.com/ScholarTN" target="_blank" rel="noopener" data-magnetic><span class="mono">GitHub</span>ScholarTN ↗</a></li>
+        <li><a href="https://www.linkedin.com/search/results/people/?keywords=Thubalami%20Nkomazana" target="_blank" rel="noopener" data-magnetic id="linkedinLink"><span class="mono">LinkedIn</span>Thubalami Nkomazana ↗</a></li>
+        <li><a href="https://axterionlabs.com" target="_blank" rel="noopener" data-magnetic><span class="mono">Venture</span>axterionlabs.com ↗</a></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__big" aria-hidden="true">
+      <svg viewBox="0 0 64 64" fill="none"><g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 23 H13.5 a4.75 4.75 0 0 0 0 9.5 h3 a4.75 4.75 0 0 1 0 9.5 H9"/><path d="M25 23 H39 M32 23 V42"/><path d="M43 42 V23 L55 42 V23"/></g><circle cx="55" cy="14.5" r="2" fill="var(--ember)"/></svg>
+    </div>
+    <div class="footer__row mono">
+      <span>© <span id="year">2026</span> Scholar Thubalami Nkomazana</span>
+      <span class="footer__maxim">Proximity is the locus of accretion and emergence.</span>
+      <a href="#top" data-magnetic>Back to top ↑</a>
+    </div>
+  </footer>
+
+  <!-- ============ COMMAND PALETTE ============ -->
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command palette" hidden>
+    <div class="palette__backdrop" data-close></div>
+    <div class="palette__box">
+      <div class="palette__input">
+        <span class="mono">›</span>
+        <input id="paletteInput" type="text" placeholder="Type a command or jump to…" autocomplete="off" spellcheck="false" />
+        <kbd class="mono">esc</kbd>
+      </div>
+      <ul class="palette__list" id="paletteList" role="listbox"></ul>
+      <div class="palette__foot mono"><span>↑↓ navigate</span><span>↵ select</span><span>STN / cmd</span></div>
+    </div>
+  </div>
+
+  <div class="toast mono" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
