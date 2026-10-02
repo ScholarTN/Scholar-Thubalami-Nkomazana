@@ -12,8 +12,18 @@
   const lerp = (a, b, t) => a + (b - a) * t;
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
-  const EMBER = [224, 138, 79];
-  const INK = [239, 231, 218];
+
+  /* ---------------- theme colours (canvases read these live) ---------------- */
+  const C = { ember: [224, 138, 79], ember2: [243, 176, 124], ink: [239, 231, 218], patina: [143, 184, 168], light: false };
+  const rgb = (a, al = 1) => `rgba(${a[0]},${a[1]},${a[2]},${al})`;
+  function readTheme() {
+    const cs = getComputedStyle(document.documentElement);
+    const v = (n) => cs.getPropertyValue(n).split(",").map((x) => parseFloat(x));
+    const hex = (n) => { const h = cs.getPropertyValue(n).trim().replace("#", ""); return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16)); };
+    C.ember = v("--ember-rgb"); C.ink = v("--ink-rgb"); C.patina = v("--patina-rgb"); C.ember2 = hex("--ember-2");
+    C.light = document.documentElement.dataset.theme === "light";
+  }
+  readTheme();
 
   /* ---------------- preloader ---------------- */
   function preloader(done) {
@@ -233,7 +243,7 @@
         x: Math.random() * w, y: Math.random() * h,
         vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
         r: Math.random() * 1.4 + 0.5,
-        c: Math.random() < 0.18 ? EMBER : INK,
+        c: Math.random() < 0.18 ? "ember" : "ink",
         a: Math.random() * 0.5 + 0.25,
         s: Math.random() < 0.5 ? 1 : -1,
       }));
@@ -295,19 +305,19 @@
           const d = Math.hypot(a.x - b.x, a.y - b.y);
           if (d < 78) {
             const al = (1 - d / 78) * Math.min(a.n, b.n) * 0.9;
-            ctx.strokeStyle = `rgba(${EMBER[0]},${EMBER[1]},${EMBER[2]},${al})`;
+            ctx.strokeStyle = rgb(C.ember, al);
             ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
           }
         }
       }
       for (const p of parts) {
         const glow = p.n * 0.8;
-        ctx.fillStyle = `rgba(${p.c[0]},${p.c[1]},${p.c[2]},${Math.min(1, p.a + glow)})`;
+        ctx.fillStyle = rgb(C[p.c], Math.min(1, (C.light ? p.a + 0.15 : p.a) + glow));
         ctx.beginPath(); ctx.arc(p.x, p.y, p.r + p.n * 1.4, 0, Math.PI * 2); ctx.fill();
       }
       // core
       const g = ctx.createRadialGradient(ptr.x, ptr.y, 0, ptr.x, ptr.y, rad * 0.55);
-      g.addColorStop(0, "rgba(224,138,79,0.10)"); g.addColorStop(1, "rgba(224,138,79,0)");
+      g.addColorStop(0, rgb(C.ember, 0.1)); g.addColorStop(1, rgb(C.ember, 0));
       ctx.fillStyle = g; ctx.beginPath(); ctx.arc(ptr.x, ptr.y, rad * 0.55, 0, Math.PI * 2); ctx.fill();
     }
 
@@ -317,7 +327,7 @@
     }
     resize();
     addEventListener("resize", debounce(resize, 200));
-    if (reduced) { step(0); return; }
+    if (reduced) { step(0); addEventListener("themechange", () => step(0)); return; }
     new IntersectionObserver(([e]) => (running = e.isIntersecting)).observe(hero);
     document.addEventListener("visibilitychange", () => (running = !document.hidden));
     requestAnimationFrame(loop);
@@ -425,25 +435,26 @@
       const max = 6, step = w / (N - 1);
       const y = (v) => h - 10 - (v / max) * (h - 20);
       // grid
-      ctx.strokeStyle = "rgba(239,231,218,0.07)"; ctx.lineWidth = 1;
+      ctx.strokeStyle = rgb(C.ink, 0.08); ctx.lineWidth = 1;
       for (let g = 1; g < 6; g++) { ctx.beginPath(); ctx.moveTo(0, y(g)); ctx.lineTo(w, y(g)); ctx.stroke(); }
       // area
       const grad = ctx.createLinearGradient(0, 0, 0, h);
-      grad.addColorStop(0, "rgba(224,138,79,0.35)"); grad.addColorStop(1, "rgba(224,138,79,0)");
+      grad.addColorStop(0, rgb(C.ember, 0.35)); grad.addColorStop(1, rgb(C.ember, 0));
       ctx.beginPath(); ctx.moveTo(0, h);
       data.forEach((v, i) => ctx.lineTo(i * step, y(v)));
       ctx.lineTo(w, h); ctx.closePath(); ctx.fillStyle = grad; ctx.fill();
       // line
       ctx.beginPath();
       data.forEach((v, i) => (i ? ctx.lineTo(i * step, y(v)) : ctx.moveTo(0, y(v))));
-      ctx.strokeStyle = "#e08a4f"; ctx.lineWidth = 1.6; ctx.stroke();
+      ctx.strokeStyle = rgb(C.ember); ctx.lineWidth = 1.6; ctx.stroke();
       // head
       const last = data[data.length - 1];
-      ctx.fillStyle = "#f3b07c"; ctx.beginPath(); ctx.arc(w - 2, y(last), 3.5, 0, Math.PI * 2); ctx.fill();
-      ctx.strokeStyle = "rgba(243,176,124,0.3)"; ctx.beginPath(); ctx.arc(w - 2, y(last), 9, 0, Math.PI * 2); ctx.stroke();
+      ctx.fillStyle = rgb(C.ember2); ctx.beginPath(); ctx.arc(w - 2, y(last), 3.5, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = rgb(C.ember2, 0.3); ctx.beginPath(); ctx.arc(w - 2, y(last), 9, 0, Math.PI * 2); ctx.stroke();
     };
     resize(); draw();
     addEventListener("resize", debounce(() => { resize(); draw(); }, 200));
+    addEventListener("themechange", draw);
     new IntersectionObserver(([e]) => (visible = e.isIntersecting)).observe(c);
     if (reduced) return;
     setInterval(() => {
@@ -545,13 +556,13 @@
         const a = nodes[i], b = nodes[j];
         const md = Math.hypot((a.x + b.x) / 2 - mouse.x, (a.y + b.y) / 2 - mouse.y);
         const boost = md < 180 ? (1 - md / 180) * 0.5 : 0;
-        ctx.strokeStyle = `rgba(239,231,218,${0.07 + boost})`;
+        ctx.strokeStyle = rgb(C.ink, (C.light ? 0.12 : 0.07) + boost);
         ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
       }
       for (const n of nodes) {
         const md = Math.hypot(n.x - mouse.x, n.y - mouse.y);
         const boost = md < 160 ? 1 - md / 160 : 0;
-        ctx.fillStyle = boost ? `rgba(224,138,79,${0.4 + boost * 0.6})` : "rgba(239,231,218,0.35)";
+        ctx.fillStyle = boost ? rgb(C.ember, 0.4 + boost * 0.6) : rgb(C.ink, 0.35);
         ctx.beginPath(); ctx.arc(n.x, n.y, 1.3 + boost * 2, 0, Math.PI * 2); ctx.fill();
       }
       if (!reduced && edges.length && Math.random() < 0.18) pulses.push({ e: edges[(Math.random() * edges.length) | 0], p: 0, dir: Math.random() < 0.5 });
@@ -560,14 +571,14 @@
         q.p += 0.022;
         const a = nodes[q.e[q.dir ? 0 : 1]], b = nodes[q.e[q.dir ? 1 : 0]];
         const x = lerp(a.x, b.x, q.p), y = lerp(a.y, b.y, q.p);
-        ctx.fillStyle = `rgba(243,176,124,${Math.sin(q.p * Math.PI)})`;
+        ctx.fillStyle = rgb(C.light ? C.ember : C.ember2, Math.sin(q.p * Math.PI));
         ctx.beginPath(); ctx.arc(x, y, 2, 0, Math.PI * 2); ctx.fill();
       }
     };
     resize();
     addEventListener("resize", debounce(resize, 250));
     new IntersectionObserver(([e]) => (visible = e.isIntersecting)).observe(sec);
-    if (reduced) { draw(0); return; }
+    if (reduced) { draw(0); addEventListener("themechange", () => draw(0)); return; }
     (function loop(t) { if (visible && !document.hidden) draw(t); requestAnimationFrame(loop); })(0);
   }
 
@@ -599,6 +610,9 @@
       { t: "Go to Technical stack", k: "Navigate", run: go("stack") },
       { t: "Go to Certifications", k: "Navigate", run: go("certs") },
       { t: "Go to Contact", k: "Navigate", run: go("contact") },
+      { t: "Go to Education", k: "Navigate", run: go("education") },
+      { t: "Toggle light / dark theme", k: "Action", run: () => setTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light", $("#themeBtn")) },
+      { t: "Download CV (PDF)", k: "Action", run: open("assets/cv/Thubalami_Nkomazana_CV.pdf") },
       { t: "Copy email address", k: "Action", run: copyEmail },
       { t: "Send an email", k: "Action", run: () => (location.href = `mailto:${EMAIL}`) },
       { t: "Open GitHub — ScholarTN", k: "Link", run: open("https://github.com/ScholarTN") },
@@ -640,6 +654,7 @@
     input.addEventListener("input", () => { sel = 0; render(); });
     addEventListener("keydown", (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); root.hidden ? show() : hide(); return; }
+      if (e.key.toLowerCase() === "t" && !e.metaKey && !e.ctrlKey && !e.altKey && root.hidden && !/input|textarea/i.test(document.activeElement.tagName)) { setTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light", $("#themeBtn")); return; }
       if (e.key === "/" && root.hidden && !/input|textarea/i.test(document.activeElement.tagName)) { e.preventDefault(); show(); return; }
       if (root.hidden) return;
       if (e.key === "Escape") hide();
@@ -649,9 +664,67 @@
     });
   }
 
+  /* ---------------- theme toggle ---------------- */
+  function setTheme(next, origin) {
+    const root = document.documentElement;
+    const apply = () => {
+      root.dataset.theme = next;
+      try { localStorage.setItem("stn-theme", next); } catch (e) {}
+      readTheme();
+      dispatchEvent(new Event("themechange"));
+    };
+    if (origin) {
+      const r = origin.getBoundingClientRect();
+      root.style.setProperty("--vt-x", `${r.left + r.width / 2}px`);
+      root.style.setProperty("--vt-y", `${r.top + r.height / 2}px`);
+    }
+    if (document.startViewTransition && !reduced) document.startViewTransition(apply);
+    else apply();
+  }
+  function theme() {
+    const btn = $("#themeBtn");
+    const meta = $('meta[name="theme-color"]');
+    const sync = () => {
+      const light = document.documentElement.dataset.theme === "light";
+      btn.setAttribute("aria-label", light ? "Switch to dark theme" : "Switch to light theme");
+      btn.setAttribute("aria-pressed", String(light));
+      meta.setAttribute("content", light ? "#f2ece2" : "#0b0a09");
+    };
+    const toggle = (e) => setTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light", e && e.currentTarget);
+    btn.addEventListener("click", toggle);
+    $$("[data-theme-toggle]").forEach((b) => b.addEventListener("click", toggle));
+    addEventListener("themechange", sync);
+    // follow the OS setting until the visitor picks one explicitly
+    matchMedia("(prefers-color-scheme: light)").addEventListener("change", (e) => {
+      let saved = null; try { saved = localStorage.getItem("stn-theme"); } catch (_) {}
+      if (!saved) { document.documentElement.dataset.theme = e.matches ? "light" : "dark"; readTheme(); dispatchEvent(new Event("themechange")); }
+    });
+    sync();
+    return toggle;
+  }
+
+  /* ---------------- count-up numbers ---------------- */
+  function countUps() {
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      io.unobserve(e.target);
+      const el = e.target, end = +el.dataset.count, text = el.textContent;
+      const pre = text.match(/^[^0-9]*/)[0], post = text.match(/[^0-9]*$/)[0];
+      if (reduced) return;
+      const t0 = performance.now(), dur = 1400;
+      (function tick(now) {
+        const k = clamp((now - t0) / dur, 0, 1), v = Math.round(end * (1 - Math.pow(1 - k, 3)));
+        el.textContent = pre + v + post;
+        if (k < 1) requestAnimationFrame(tick);
+      })(t0);
+    }), { threshold: 0.6 });
+    $$("[data-count]").forEach((el) => io.observe(el));
+  }
+
   function debounce(fn, ms) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
 
   /* ---------------- boot ---------------- */
+  theme();
   clock();
   navigation();
   cursor();
@@ -668,6 +741,7 @@
   neuro();
   email();
   palette();
+  countUps();
   preloader(reveals);
 
   console.log("%cSTN%c  Proximity is the locus of accretion and emergence.  —  press ⌘K", "font:700 20px serif;color:#e08a4f", "color:#b3a99b");
